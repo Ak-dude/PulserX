@@ -4,10 +4,23 @@ import { Bell, UserPlus, MessageSquare, Heart } from "lucide-react";
 const Notifications = () => {
   const notifications = [
     { icon: UserPlus, text: "Sarah Johnson wants to connect", time: "5m ago", type: "connection" },
-    { icon: MessageSquare, text: "New message from Mike Chen", time: "1h ago", type: "message" },
-    { icon: Heart, text: "Emma Davis liked your post", time: "2h ago", type: "like" },
-    { icon: Bell, text: "Your campaign reached 10K views", time: "4h ago", type: "milestone" },
-    { icon: UserPlus, text: "Alex Rivera accepted your request", time: "1d ago", type: "connection" },
+    { icon: MessageSquare, text: "New message from Mike Chen", time: "15m ago", type: "message" },
+    { icon: Heart, text: "Emma Davis liked your post", time: "32m ago", type: "like" },
+    { icon: Bell, text: "Your campaign reached 10K views", time: "1h ago", type: "milestone" },
+    { icon: UserPlus, text: "Alex Rivera accepted your request", time: "2h ago", type: "connection" },
+    { icon: MessageSquare, text: "Jordan Smith replied to your comment", time: "3h ago", type: "message" },
+    { icon: Heart, text: "Taylor Brown and 24 others liked your photo", time: "4h ago", type: "like" },
+    { icon: Bell, text: "New collaboration opportunity available", time: "5h ago", type: "milestone" },
+    { icon: UserPlus, text: "Casey Martinez is now following you", time: "6h ago", type: "connection" },
+    { icon: MessageSquare, text: "Morgan Lee mentioned you in a comment", time: "8h ago", type: "message" },
+    { icon: Heart, text: "Riley Cooper shared your content", time: "10h ago", type: "like" },
+    { icon: Bell, text: "You've reached 500K total followers!", time: "12h ago", type: "milestone" },
+    { icon: UserPlus, text: "Jamie Wilson sent you a connection request", time: "1d ago", type: "connection" },
+    { icon: MessageSquare, text: "Chris Anderson started a conversation", time: "1d ago", type: "message" },
+    { icon: Bell, text: "Your engagement rate increased by 15%", time: "2d ago", type: "milestone" },
+    { icon: Heart, text: "Sam Taylor loved your recent video", time: "2d ago", type: "like" },
+    { icon: UserPlus, text: "Blake Garcia wants to collaborate", time: "3d ago", type: "connection" },
+    { icon: Bell, text: "Monthly analytics report is ready", time: "3d ago", type: "milestone" },
   ];
 
   const getIconColor = (type: string) => {

@@ -8,6 +8,13 @@ const Messages = () => {
     { id: 1, name: "Sarah Johnson", lastMessage: "That sounds great! Let's collab", time: "2m ago", unread: 2 },
     { id: 2, name: "Mike Chen", lastMessage: "Thanks for connecting!", time: "1h ago", unread: 0 },
     { id: 3, name: "Emma Davis", lastMessage: "I'll send you the details soon", time: "3h ago", unread: 1 },
+    { id: 4, name: "Alex Rivera", lastMessage: "Love your recent content!", time: "5h ago", unread: 0 },
+    { id: 5, name: "Jordan Smith", lastMessage: "Are you available next week?", time: "8h ago", unread: 3 },
+    { id: 6, name: "Taylor Brown", lastMessage: "Check out this opportunity", time: "12h ago", unread: 0 },
+    { id: 7, name: "Casey Martinez", lastMessage: "Perfect! I'll book it now", time: "1d ago", unread: 0 },
+    { id: 8, name: "Morgan Lee", lastMessage: "Thanks for the introduction", time: "1d ago", unread: 1 },
+    { id: 9, name: "Riley Cooper", lastMessage: "See you at the event!", time: "2d ago", unread: 0 },
+    { id: 10, name: "Jamie Wilson", lastMessage: "Great working with you", time: "3d ago", unread: 0 },
   ];
 
   return (

@@ -38,7 +38,7 @@ const Profile = () => {
           </div>
         </Card>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card className="p-6 bg-card border-border text-center">
             <div className="text-3xl font-bold mb-1">1.2K</div>
             <div className="text-sm text-muted-foreground">Connections</div>
@@ -50,6 +50,56 @@ const Profile = () => {
           <Card className="p-6 bg-card border-border text-center">
             <div className="text-3xl font-bold mb-1">94%</div>
             <div className="text-sm text-muted-foreground">Engagement</div>
+          </Card>
+          <Card className="p-6 bg-card border-border text-center">
+            <div className="text-3xl font-bold mb-1">$12.5K</div>
+            <div className="text-sm text-muted-foreground">Avg. Campaign</div>
+          </Card>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-xl font-bold mb-4">Recent Collaborations</h2>
+            <div className="space-y-3">
+              {[
+                { brand: "TechGear Pro", type: "Product Review", status: "Completed", amount: "$15K" },
+                { brand: "FashionNova", type: "Campaign", status: "In Progress", amount: "$22K" },
+                { brand: "HealthFit", type: "Sponsored Post", status: "Completed", amount: "$8.5K" },
+                { brand: "TravelMore", type: "Ambassador", status: "Active", amount: "$30K" },
+              ].map((collab, i) => (
+                <div key={i} className="p-3 rounded-lg bg-secondary/50">
+                  <div className="flex items-start justify-between mb-1">
+                    <div>
+                      <p className="font-semibold">{collab.brand}</p>
+                      <p className="text-sm text-muted-foreground">{collab.type}</p>
+                    </div>
+                    <span className="text-sm font-medium text-accent">{collab.amount}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{collab.status}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-xl font-bold mb-4">Growth Analytics</h2>
+            <div className="space-y-4">
+              {[
+                { metric: "Follower Growth", value: "+12.4K", period: "This Month", change: "+18%" },
+                { metric: "Engagement Rate", value: "94%", period: "Last 30 Days", change: "+8%" },
+                { metric: "Content Reach", value: "2.3M", period: "This Week", change: "+25%" },
+                { metric: "Collaboration Requests", value: "47", period: "Pending", change: "+12" },
+              ].map((stat, i) => (
+                <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-gradient-card">
+                  <div>
+                    <p className="text-sm text-muted-foreground">{stat.metric}</p>
+                    <p className="text-2xl font-bold">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground">{stat.period}</p>
+                  </div>
+                  <span className="text-sm font-medium text-accent">{stat.change}</span>
+                </div>
+              ))}
+            </div>
           </Card>
         </div>
 
