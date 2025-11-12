@@ -9,6 +9,7 @@ import Connections from "./pages/Connections";
 import Messages from "./pages/Messages";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
+import Campaigns from "./pages/Campaigns";
 import NotFound from "./pages/NotFound";
 import BottomNav from "./components/BottomNav";
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/dashboard" element={<><Dashboard /><BottomNav /></>} />
           <Route path="/connections" element={<><Connections /><BottomNav /></>} />
           <Route path="/messages" element={<><Messages /><BottomNav /></>} />
+          <Route path="/campaigns" element={<><Campaigns /><BottomNav /></>} />
           <Route path="/notifications" element={<><Notifications /><BottomNav /></>} />
           <Route path="/profile" element={<><Profile /><BottomNav /></>} />
           <Route path="*" element={<NotFound />} />

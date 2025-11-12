@@ -1,4 +1,4 @@
-import { Home, Users, MessageSquare, Bell, User } from "lucide-react";
+import { Home, Users, MessageSquare, Briefcase, User } from "lucide-react";
 import { NavLink } from "./NavLink";
 
 const BottomNav = () => {
@@ -6,7 +6,7 @@ const BottomNav = () => {
     { icon: Home, label: "Home", path: "/dashboard" },
     { icon: Users, label: "Connect", path: "/connections" },
     { icon: MessageSquare, label: "Messages", path: "/messages" },
-    { icon: Bell, label: "Alerts", path: "/notifications" },
+    { icon: Briefcase, label: "Campaigns", path: "/campaigns" },
     { icon: User, label: "Profile", path: "/profile" },
   ];
 
