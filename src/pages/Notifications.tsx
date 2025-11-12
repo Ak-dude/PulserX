@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Bell, UserPlus, MessageSquare, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
+import { Bell, UserPlus, MessageSquare, Heart, X } from "lucide-react";
 
 const Notifications = () => {
-  const notifications = [
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const [selectedNotif, setSelectedNotif] = useState<any>(null);
+  const [showNotifDialog, setShowNotifDialog] = useState(false);
+
+  const initialNotifications = [
     { icon: UserPlus, text: "Sarah Johnson wants to connect", time: "5m ago", type: "connection" },
     { icon: MessageSquare, text: "New message from Mike Chen", time: "15m ago", type: "message" },
     { icon: Heart, text: "Emma Davis liked your post", time: "32m ago", type: "like" },
@@ -23,6 +33,41 @@ const Notifications = () => {
     { icon: Bell, text: "Monthly analytics report is ready", time: "3d ago", type: "milestone" },
   ];
 
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  const handleMarkAllRead = () => {
+    toast({
+      title: "All Read",
+      description: "All notifications marked as read.",
+    });
+  };
+
+  const handleNotificationClick = (notif: any) => {
+    setSelectedNotif(notif);
+    setShowNotifDialog(true);
+  };
+
+  const handleAcceptConnection = () => {
+    toast({
+      title: "Connection Accepted",
+      description: "You're now connected!",
+    });
+    setShowNotifDialog(false);
+  };
+
+  const handleViewMessage = () => {
+    setShowNotifDialog(false);
+    navigate("/messages");
+  };
+
+  const handleDeleteNotification = (index: number) => {
+    setNotifications(notifications.filter((_, i) => i !== index));
+    toast({
+      title: "Notification Removed",
+      description: "Notification has been deleted.",
+    });
+  };
+
   const getIconColor = (type: string) => {
     switch (type) {
       case "connection": return "text-primary";
@@ -41,16 +86,21 @@ const Notifications = () => {
             <h1 className="text-3xl font-bold mb-2">Notifications</h1>
             <p className="text-muted-foreground">Stay updated with your network</p>
           </div>
-          <button className="text-sm text-primary hover:underline">Mark all as read</button>
+          <Button variant="ghost" onClick={handleMarkAllRead}>
+            Mark all as read
+          </Button>
         </div>
 
         <div className="space-y-3">
           {notifications.map((notif, index) => (
             <Card 
               key={index} 
-              className="p-4 bg-card border-border hover:border-primary/50 transition-all cursor-pointer"
+              className="p-4 bg-card border-border hover:border-primary/50 transition-all group relative"
             >
-              <div className="flex items-start gap-4">
+              <div 
+                className="flex items-start gap-4 cursor-pointer"
+                onClick={() => handleNotificationClick(notif)}
+              >
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                   <notif.icon className={`w-5 h-5 ${getIconColor(notif.type)}`} />
                 </div>
@@ -60,10 +110,63 @@ const Notifications = () => {
                 </div>
                 <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0 mt-2" />
               </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteNotification(index);
+                }}
+              >
+                <X className="w-4 h-4" />
+              </Button>
             </Card>
           ))}
         </div>
       </div>
+
+      {/* Notification Dialog */}
+      <Dialog open={showNotifDialog} onOpenChange={setShowNotifDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Notification</DialogTitle>
+            <DialogDescription>
+              {selectedNotif?.time}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                {selectedNotif?.icon && <selectedNotif.icon className={`w-6 h-6 ${getIconColor(selectedNotif.type)}`} />}
+              </div>
+              <p className="font-medium flex-1">{selectedNotif?.text}</p>
+            </div>
+          </div>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            {selectedNotif?.type === "connection" && (
+              <>
+                <Button onClick={handleAcceptConnection} className="w-full">
+                  Accept
+                </Button>
+                <Button variant="outline" onClick={() => setShowNotifDialog(false)} className="w-full">
+                  Ignore
+                </Button>
+              </>
+            )}
+            {selectedNotif?.type === "message" && (
+              <Button onClick={handleViewMessage} className="w-full">
+                View Message
+              </Button>
+            )}
+            {(selectedNotif?.type === "like" || selectedNotif?.type === "milestone") && (
+              <Button onClick={() => setShowNotifDialog(false)} className="w-full">
+                Close
+              </Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

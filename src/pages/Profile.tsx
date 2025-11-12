@@ -1,8 +1,39 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { Settings, Instagram, Twitter, Youtube, MapPin, Link as LinkIcon } from "lucide-react";
 
 const Profile = () => {
+  const { toast } = useToast();
+  const [showEditDialog, setShowEditDialog] = useState(false);
+  const [profileData, setProfileData] = useState({
+    name: "Your Name",
+    handle: "@yourhandle",
+    bio: "Content creator & influencer helping brands connect with audiences. Passionate about tech, lifestyle, and digital marketing.",
+    location: "San Francisco, CA",
+    website: "yourwebsite.com",
+  });
+  const [editData, setEditData] = useState(profileData);
+
+  const handleEditProfile = () => {
+    setEditData(profileData);
+    setShowEditDialog(true);
+  };
+
+  const handleSaveProfile = () => {
+    setProfileData(editData);
+    toast({
+      title: "Profile Updated",
+      description: "Your profile has been successfully updated.",
+    });
+    setShowEditDialog(false);
+  };
+
   return (
     <div className="min-h-screen bg-background pb-20 pt-8 px-4">
       <div className="max-w-6xl mx-auto space-y-6">
@@ -12,26 +43,25 @@ const Profile = () => {
             <div className="flex-1">
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h1 className="text-2xl font-bold mb-1">Your Name</h1>
-                  <p className="text-muted-foreground">@yourhandle</p>
+                  <h1 className="text-2xl font-bold mb-1">{profileData.name}</h1>
+                  <p className="text-muted-foreground">{profileData.handle}</p>
                 </div>
-                <Button variant="outline" className="border-border">
+                <Button variant="outline" className="border-border" onClick={handleEditProfile}>
                   <Settings className="w-4 h-4 mr-2" />
                   Edit Profile
                 </Button>
               </div>
               <p className="text-muted-foreground mb-4">
-                Content creator & influencer helping brands connect with audiences. 
-                Passionate about tech, lifestyle, and digital marketing.
+                {profileData.bio}
               </p>
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  San Francisco, CA
+                  {profileData.location}
                 </div>
                 <div className="flex items-center gap-2">
                   <LinkIcon className="w-4 h-4" />
-                  yourwebsite.com
+                  {profileData.website}
                 </div>
               </div>
             </div>
@@ -124,6 +154,69 @@ const Profile = () => {
           </div>
         </Card>
       </div>
+
+      {/* Edit Profile Dialog */}
+      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit Profile</DialogTitle>
+            <DialogDescription>
+              Update your profile information
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                value={editData.name}
+                onChange={(e) => setEditData({ ...editData, name: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="handle">Handle</Label>
+              <Input
+                id="handle"
+                value={editData.handle}
+                onChange={(e) => setEditData({ ...editData, handle: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="bio">Bio</Label>
+              <Textarea
+                id="bio"
+                value={editData.bio}
+                onChange={(e) => setEditData({ ...editData, bio: e.target.value })}
+                rows={4}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="location">Location</Label>
+              <Input
+                id="location"
+                value={editData.location}
+                onChange={(e) => setEditData({ ...editData, location: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="website">Website</Label>
+              <Input
+                id="website"
+                value={editData.website}
+                onChange={(e) => setEditData({ ...editData, website: e.target.value })}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowEditDialog(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveProfile}>
+              Save Changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
