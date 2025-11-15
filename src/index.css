@@ -17,9 +17,9 @@ All colors MUST be HSL.
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 263 70% 65%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 271 91% 75%;
 
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
@@ -27,15 +27,18 @@ All colors MUST be HSL.
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 340 82% 52%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 340 82% 67%;
+    --accent: 333 100% 63%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 333 100% 73%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
 
     --success: 142 76% 36%;
-    --success-foreground: 210 40% 98%;
+    --success-foreground: 0 0% 100%;
 
     --warning: 38 92% 50%;
-    --warning-foreground: 222 47% 11%;
+    --warning-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
@@ -46,7 +49,9 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
     
-    --gradient-primary: linear-gradient(135deg, hsl(263, 70%, 50%) 0%, hsl(340, 82%, 52%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(271, 91%, 65%) 0%, hsl(333, 100%, 63%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(333, 100%, 63%) 0%, hsl(271, 91%, 65%) 100%);
+    --gradient-info: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(271, 91%, 65%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(0, 0%, 12%) 0%, hsl(0, 0%, 7%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0, 0%, 9%) 0%, hsl(0, 0%, 5%) 100%);
     --gradient-shine: linear-gradient(135deg, hsl(263, 70%, 50% / 0.1) 0%, hsl(340, 82%, 52% / 0.1) 100%);
@@ -87,9 +92,9 @@ All colors MUST be HSL.
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 263 70% 65%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 271 91% 75%;
 
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
@@ -97,10 +102,11 @@ All colors MUST be HSL.
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 340 82% 52%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 340 82% 67%;
+    --accent: 333 100% 63%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 333 100% 73%;
 
+    --info: 199 89% 48%;
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
 
